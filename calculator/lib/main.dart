@@ -90,64 +90,47 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Container(),
                       ),
                       Expanded(
-                        child: Text("CE",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("CE",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       Expanded(
-                        child: Text("C",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("C",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       Expanded(
-                        child: Text("÷",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text("7",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Text("8",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Text("9",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Text("×",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("÷",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -158,72 +141,62 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Row(
                     children: <Widget>[
                       Expanded(
-                        child: Text("4",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("7",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       Expanded(
-                        child: Text("5",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("8",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       Expanded(
-                        child: Text("6",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("9",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       Expanded(
-                        child: Text("-",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text("1",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Text("2",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Text("3",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Text("+",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("×",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -234,34 +207,194 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Row(
                     children: <Widget>[
                       Expanded(
-                        child: Text("+/-",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("4",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       Expanded(
-                        child: Text("0",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("5",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       Expanded(
-                        child: Text(".",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("6",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       Expanded(
-                        child: Text("=",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 60,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("-",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("1",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("2",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("3",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("+",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("+/-",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("0",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text(".",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text("=",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
                           ),
                         ),
                       ),
