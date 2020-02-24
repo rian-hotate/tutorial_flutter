@@ -54,6 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  void _clearNum() {
+    setState(() {
+      _setNumber = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -91,7 +97,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _clearNum();
+                            },
                             child: Text("CE",
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -106,7 +114,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _clearNum();
+                            },
                             child: Text("C",
                               textAlign: TextAlign.center,
                               style: TextStyle(
