@@ -87,6 +87,39 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Row(
                     children: <Widget>[
                       Expanded(
+                        child: Container(),
+                      ),
+                      Expanded(
+                        child: Text("CE",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 60,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text("C",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 60,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text("÷",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 60,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
                         child: Text("7",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -111,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       Expanded(
-                        child: Text("÷",
+                        child: Text("×",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 60,
@@ -149,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       Expanded(
-                        child: Text("×",
+                        child: Text("-",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 60,
@@ -187,7 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       Expanded(
-                        child: Text("-",
+                        child: Text("+",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 60,
@@ -201,7 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Row(
                     children: <Widget>[
                       Expanded(
-                        child: Text(".",
+                        child: Text("+/-",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 60,
@@ -217,7 +250,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       Expanded(
-                        child: Text("=",
+                        child: Text(".",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 60,
@@ -225,7 +258,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       Expanded(
-                        child: Text("+",
+                        child: Text("=",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 60,
