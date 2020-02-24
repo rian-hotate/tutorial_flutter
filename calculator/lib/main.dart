@@ -44,17 +44,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _setNumber = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  void _setNum(int num) {
+    if (100000000000 > _setNumber) {
+      setState(() {
+        _setNumber = _setNumber * 10 + num;
+      });
+    }
   }
 
   @override
@@ -75,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           Text(
-            "0",
+            _setNumber.toString(),
             style: TextStyle(
               fontSize: 60,
             ),
@@ -145,7 +142,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _setNum(7);
+                            },
                             child: Text("7",
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -160,7 +159,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _setNum(8);
+                            },
                             child: Text("8",
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -175,7 +176,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _setNum(9);
+                            },
                             child: Text("9",
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -211,7 +214,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _setNum(4);
+                            },
                             child: Text("4",
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -226,7 +231,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _setNum(5);
+                            },
                             child: Text("5",
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -241,7 +248,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _setNum(6);
+                            },
                             child: Text("6",
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -277,7 +286,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _setNum(1);
+                            },
                             child: Text("1",
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -292,7 +303,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _setNum(3);
+                            },
                             child: Text("2",
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -307,7 +320,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _setNum(4);
+                            },
                             child: Text("3",
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -358,7 +373,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _setNum(0);
+                            },
                             child: Text("0",
                               textAlign: TextAlign.center,
                               style: TextStyle(
