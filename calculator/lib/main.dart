@@ -43,15 +43,36 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+enum CALC_TYPE { add, sub, multi, div }
+
 class _MyHomePageState extends State<MyHomePage> {
-  int _setNumber = 0;
+  int _setNumber = 0; // 計算用
+  int _displayNumber = 0; // 表示用
+  int _firstNum = 0;
+  CALC_TYPE _calcType;
 
   void _setNum(int num) {
-    if (100000000000 > _setNumber) {
+    _displayNumber = _setNumber;
+    if (100000000000 > _displayNumber) {
       setState(() {
-        _setNumber = _setNumber * 10 + num;
+        _displayNumber = _displayNumber * 10 + num;
+        _setNumber = _displayNumber;
       });
     }
+  }
+
+  void _calcBtnPressed(CALC_TYPE type) {
+    _firstNum = _setNumber;
+    _setNumber = 0;
+    _displayNumber = 0;
+    _calcType = type;
+  }
+
+  void _calcAdd() {
+    setState(() {
+      _displayNumber = _firstNum + _setNumber;
+      _setNumber = 0;
+    });
   }
 
   void _clearNum() {
@@ -78,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           Text(
-            _setNumber.toString(),
+            _displayNumber.toString(),
             style: TextStyle(
               fontSize: 60,
             ),
@@ -100,7 +121,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               _clearNum();
                             },
-                            child: Text("CE",
+                            child: Text(
+                              "CE",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -117,7 +139,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               _clearNum();
                             },
-                            child: Text("C",
+                            child: Text(
+                              "C",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -132,7 +155,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: double.infinity,
                           child: FlatButton(
                             onPressed: () {},
-                            child: Text("÷",
+                            child: Text(
+                              "÷",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -155,7 +179,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               _setNum(7);
                             },
-                            child: Text("7",
+                            child: Text(
+                              "7",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -172,7 +197,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               _setNum(8);
                             },
-                            child: Text("8",
+                            child: Text(
+                              "8",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -189,7 +215,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               _setNum(9);
                             },
-                            child: Text("9",
+                            child: Text(
+                              "9",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -204,7 +231,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: double.infinity,
                           child: FlatButton(
                             onPressed: () {},
-                            child: Text("×",
+                            child: Text(
+                              "×",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -227,7 +255,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               _setNum(4);
                             },
-                            child: Text("4",
+                            child: Text(
+                              "4",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -244,7 +273,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               _setNum(5);
                             },
-                            child: Text("5",
+                            child: Text(
+                              "5",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -261,7 +291,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               _setNum(6);
                             },
-                            child: Text("6",
+                            child: Text(
+                              "6",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -276,7 +307,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: double.infinity,
                           child: FlatButton(
                             onPressed: () {},
-                            child: Text("-",
+                            child: Text(
+                              "-",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -299,7 +331,26 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               _setNum(1);
                             },
-                            child: Text("1",
+                            child: Text(
+                              "1",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {
+                              _setNum(2);
+                            },
+                            child: Text(
+                              "2",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -316,7 +367,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               _setNum(3);
                             },
-                            child: Text("2",
+                            child: Text(
+                              "3",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -331,24 +383,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: double.infinity,
                           child: FlatButton(
                             onPressed: () {
-                              _setNum(4);
+                              _calcBtnPressed(CALC_TYPE.add);
                             },
-                            child: Text("3",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 40,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: double.infinity,
-                          child: FlatButton(
-                            onPressed: () {},
-                            child: Text("+",
+                            child: Text(
+                              "+",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -369,7 +407,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: double.infinity,
                           child: FlatButton(
                             onPressed: () {},
-                            child: Text("+/-",
+                            child: Text(
+                              "+/-",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -386,7 +425,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               _setNum(0);
                             },
-                            child: Text("0",
+                            child: Text(
+                              "0",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -401,7 +441,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: double.infinity,
                           child: FlatButton(
                             onPressed: () {},
-                            child: Text(".",
+                            child: Text(
+                              ".",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
@@ -415,8 +456,23 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
-                            child: Text("=",
+                            onPressed: () {
+                              switch (_calcType) {
+                                case CALC_TYPE.add:
+                                  _calcAdd();
+                                  break;
+                                case CALC_TYPE.sub:
+                                  break;
+                                case CALC_TYPE.multi:
+                                  break;
+                                case CALC_TYPE.div:
+                                  break;
+                                default:
+                                  break;
+                              }
+                            },
+                            child: Text(
+                              "=",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
