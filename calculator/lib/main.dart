@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as Math;
 
 void main() => runApp(MyApp());
 
@@ -46,17 +47,26 @@ class MyHomePage extends StatefulWidget {
 enum CALC_TYPE { add, sub, multi, div }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _setNumber = 0; // 計算用
-  int _displayNumber = 0; // 表示用
-  int _firstNum = 0;
+  double _setNumber = 0; // 計算用
+  double _displayNumber = 0; // 表示用
+  double _firstNum = 0;
   CALC_TYPE _calcType;
+  int _displayPow = 0;
 
-  void _setNum(int num) {
-    _displayNumber = _setNumber;
-    if (100000000000 > _displayNumber) {
+  void _setNum(double num) {
+    _displayPow = 0;
+    if (_displayNumber == _setNumber) {
+      if (10000000000 > _displayNumber) {
+        setState(() {
+          _displayNumber = _displayNumber * 10 + num;
+          _setNumber = _displayNumber;
+        });
+      }
+    } else {
       setState(() {
-        _displayNumber = _displayNumber * 10 + num;
+        _displayNumber = num;
         _setNumber = _displayNumber;
+        _calcType = null;
       });
     }
   }
@@ -71,13 +81,63 @@ class _MyHomePageState extends State<MyHomePage> {
   void _calcAdd() {
     setState(() {
       _displayNumber = _firstNum + _setNumber;
-      _setNumber = 0;
+      _checkDecimal();
+      _firstNum = _displayNumber;
     });
+  }
+
+  void _calcSub() {
+    setState(() {
+      _displayNumber = _firstNum - _setNumber;
+      _checkDecimal();
+      _firstNum = _displayNumber;
+    });
+  }
+
+  void _calcMulti() {
+    setState(() {
+      _displayNumber = _firstNum * _setNumber;
+      _checkDecimal();
+      _firstNum = _displayNumber;
+    });
+  }
+
+  void _calcDiv() {
+    setState(() {
+      _displayNumber = _firstNum / _setNumber;
+      _checkDecimal();
+      _firstNum = _displayNumber;
+    });
+  }
+
+  void _checkDecimal() {
+    double checkNum = _displayNumber;
+    if (100000000000 < _displayNumber ||
+        _displayNumber == _displayNumber.toInt()) {
+      for (int i = 0; 100000000000 < _displayNumber / Math.pow(10, i); i++) {
+        _displayPow = i;
+        checkNum = checkNum / 10;
+      }
+      _displayNumber = checkNum.floor().toDouble();
+    } else {
+      int count = 0;
+      for (int i = 0;
+          1 < _displayNumber / Math.pow(10, i);
+          i++) {
+        count = i;
+      }
+      int displayCount = 10 - count;
+      _displayNumber = double.parse(_displayNumber.toStringAsFixed(displayCount));
+    }
   }
 
   void _clearNum() {
     setState(() {
       _setNumber = 0;
+      _displayNumber = 0;
+      _firstNum = 0;
+      _calcType = null;
+      _displayPow = 0;
     });
   }
 
@@ -98,8 +158,19 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
+          Container(
+            height: 20,
+            child: _displayPow > 0 ? Text(
+              "10^${_displayPow.toString()}",
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ) : Container(),
+          ),
           Text(
-            _displayNumber.toString(),
+            _displayNumber == _displayNumber.toInt()
+                ? _displayNumber.toInt().toString()
+                : _displayNumber.toString(),
             style: TextStyle(
               fontSize: 60,
             ),
@@ -154,7 +225,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _calcBtnPressed(CALC_TYPE.div);
+                            },
                             child: Text(
                               "÷",
                               textAlign: TextAlign.center,
@@ -230,7 +303,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _calcBtnPressed(CALC_TYPE.multi);
+                            },
                             child: Text(
                               "×",
                               textAlign: TextAlign.center,
@@ -306,7 +381,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _calcBtnPressed(CALC_TYPE.sub);
+                            },
                             child: Text(
                               "-",
                               textAlign: TextAlign.center,
@@ -462,10 +539,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                   _calcAdd();
                                   break;
                                 case CALC_TYPE.sub:
+                                  _calcSub();
                                   break;
                                 case CALC_TYPE.multi:
+                                  _calcMulti();
                                   break;
                                 case CALC_TYPE.div:
+                                  _calcDiv();
                                   break;
                                 default:
                                   break;
