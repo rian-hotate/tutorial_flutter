@@ -47,97 +47,87 @@ class MyHomePage extends StatefulWidget {
 enum CALC_TYPE { add, sub, multi, div }
 
 class _MyHomePageState extends State<MyHomePage> {
-  double _setNumber = 0; // 計算用
-  double _displayNumber = 0; // 表示用
-  double _firstNum = 0;
-  CALC_TYPE _calcType;
-  int _displayPow = 0;
+  int _displayNumber = 0; // 表示用
+  List<int> _numberList = [0];
+  int _index = 0;
+  List<CALC_TYPE> _calcTypeList = [];
 
-  void _setNum(double num) {
-    _displayPow = 0;
-    if (_displayNumber == _setNumber) {
-      if (10000000000 > _displayNumber) {
-        setState(() {
-          _displayNumber = _displayNumber * 10 + num;
-          _setNumber = _displayNumber;
-        });
-      }
-    } else {
+  void _setNum(int num) {
+    if (10000000000 > _displayNumber) {
       setState(() {
-        _displayNumber = num;
-        _setNumber = _displayNumber;
-        _calcType = null;
+        _displayNumber = _displayNumber * 10 + num;
+        _numberList[_index] = _displayNumber;
       });
     }
   }
 
   void _calcBtnPressed(CALC_TYPE type) {
-    _firstNum = _setNumber;
-    _setNumber = 0;
-    _displayNumber = 0;
-    _calcType = type;
-  }
-
-  void _calcAdd() {
     setState(() {
-      _displayNumber = _firstNum + _setNumber;
-      _checkDecimal();
-      _firstNum = _displayNumber;
+      _index++;
+      _numberList.add(0);
+      _calcTypeList.add(type);
+      _displayNumber = 0;
     });
   }
 
-  void _calcSub() {
-    setState(() {
-      _displayNumber = _firstNum - _setNumber;
-      _checkDecimal();
-      _firstNum = _displayNumber;
-    });
-  }
-
-  void _calcMulti() {
-    setState(() {
-      _displayNumber = _firstNum * _setNumber;
-      _checkDecimal();
-      _firstNum = _displayNumber;
-    });
-  }
-
-  void _calcDiv() {
-    setState(() {
-      _displayNumber = _firstNum / _setNumber;
-      _checkDecimal();
-      _firstNum = _displayNumber;
-    });
-  }
-
-  void _checkDecimal() {
-    double checkNum = _displayNumber;
-    if (100000000000 < _displayNumber ||
-        _displayNumber == _displayNumber.toInt()) {
-      for (int i = 0; 100000000000 < _displayNumber / Math.pow(10, i); i++) {
-        _displayPow = i;
-        checkNum = checkNum / 10;
+  String _displayFormula() {
+    String _formula = "";
+    for(int i = 0; _numberList.length > i; i++) {
+      _formula += _numberList[i].toString();
+      if (_calcTypeList.length > i) {
+        switch(_calcTypeList[i]) {
+          case CALC_TYPE.add:
+            _formula += "+";
+            break;
+          case CALC_TYPE.sub:
+            _formula += "-";
+            break;
+          case CALC_TYPE.multi:
+          case CALC_TYPE.div:
+          default:
+            break;
+        }
       }
-      _displayNumber = checkNum.floor().toDouble();
-    } else {
-      int count = 0;
-      for (int i = 0;
-          1 < _displayNumber / Math.pow(10, i);
-          i++) {
-        count = i;
-      }
-      int displayCount = 10 - count;
-      _displayNumber = double.parse(_displayNumber.toStringAsFixed(displayCount));
     }
+    return _formula;
   }
 
   void _clearNum() {
     setState(() {
-      _setNumber = 0;
       _displayNumber = 0;
-      _firstNum = 0;
-      _calcType = null;
-      _displayPow = 0;
+      _index = 0;
+      _numberList.clear();
+      _numberList.add(0);
+      _calcTypeList.clear();
+      _displayNumber = 0;
+    });
+  }
+
+  void _calcFormula() {
+    int _number;
+    for(int i = 0; _numberList.length > i; i++) {
+      if (i == 0) _number = _numberList.first;
+      else if (_calcTypeList.length > i - 1) {
+        switch(_calcTypeList[i - 1]) {
+          case CALC_TYPE.add:
+            _number += _numberList[i];
+            break;
+          case CALC_TYPE.sub:
+            _number -= _numberList[i];
+            break;
+          case CALC_TYPE.multi:
+          case CALC_TYPE.div:
+          default:
+            break;
+        }
+      }
+    }
+    setState(() {
+      _index = 0;
+      _numberList.clear();
+      _numberList.add(_number);
+      _calcTypeList.clear();
+      _displayNumber = 0;
     });
   }
 
@@ -158,19 +148,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
-          Container(
-            height: 20,
-            child: _displayPow > 0 ? Text(
-              "10^${_displayPow.toString()}",
-              style: TextStyle(
-                fontSize: 20,
-              ),
-            ) : Container(),
-          ),
           Text(
-            _displayNumber == _displayNumber.toInt()
-                ? _displayNumber.toInt().toString()
-                : _displayNumber.toString(),
+            _displayFormula(),
             style: TextStyle(
               fontSize: 60,
             ),
@@ -226,7 +205,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: double.infinity,
                           child: FlatButton(
                             onPressed: () {
-                              _calcBtnPressed(CALC_TYPE.div);
                             },
                             child: Text(
                               "÷",
@@ -304,7 +282,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: double.infinity,
                           child: FlatButton(
                             onPressed: () {
-                              _calcBtnPressed(CALC_TYPE.multi);
                             },
                             child: Text(
                               "×",
@@ -534,22 +511,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: double.infinity,
                           child: FlatButton(
                             onPressed: () {
-                              switch (_calcType) {
-                                case CALC_TYPE.add:
-                                  _calcAdd();
-                                  break;
-                                case CALC_TYPE.sub:
-                                  _calcSub();
-                                  break;
-                                case CALC_TYPE.multi:
-                                  _calcMulti();
-                                  break;
-                                case CALC_TYPE.div:
-                                  _calcDiv();
-                                  break;
-                                default:
-                                  break;
-                              }
+                              _calcFormula();
                             },
                             child: Text(
                               "=",
