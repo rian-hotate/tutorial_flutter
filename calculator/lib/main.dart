@@ -52,13 +52,24 @@ class _MyHomePageState extends State<MyHomePage> {
   double _firstNum = 0;
   CALC_TYPE _calcType;
   int _displayPow = 0;
+  bool _decimalFlag = false;
 
   void _setNum(double num) {
     _displayPow = 0;
     if (_displayNumber == _setNumber) {
       if (10000000000 > _displayNumber) {
         setState(() {
-          _displayNumber = _displayNumber * 10 + num;
+          if (!_decimalFlag) _displayNumber = _displayNumber * 10 + num;
+          else {
+            int count = 1;
+            for (int i = 0;
+            _displayNumber * Math.pow(10, i) != (_displayNumber * Math.pow(10, i)).ceil();
+            i++) {
+              count++;
+            }
+            _displayNumber = double.parse((_displayNumber + (num / Math.pow(10, count))).toStringAsFixed(count));
+            _checkDecimal();
+          }
           _setNumber = _displayNumber;
         });
       }
@@ -72,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _calcBtnPressed(CALC_TYPE type) {
+    _setNumber = _displayNumber;
     _firstNum = _setNumber;
     _setNumber = 0;
     _displayNumber = 0;
@@ -110,6 +122,13 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _invertedNum() {
+    setState(() {
+      _displayNumber = -_displayNumber;
+      _setNumber = -_setNumber;
+    });
+  }
+
   void _checkDecimal() {
     double checkNum = _displayNumber;
     if (100000000000 < _displayNumber ||
@@ -138,6 +157,16 @@ class _MyHomePageState extends State<MyHomePage> {
       _firstNum = 0;
       _calcType = null;
       _displayPow = 0;
+      _decimalFlag = false;
+    });
+  }
+
+  void _clearEntryNum() {
+    setState(() {
+      _setNumber = 0;
+      _displayNumber = 0;
+      _displayPow = 0;
+      _decimalFlag = false;
     });
   }
 
@@ -190,7 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: double.infinity,
                           child: FlatButton(
                             onPressed: () {
-                              _clearNum();
+                              _clearEntryNum();
                             },
                             child: Text(
                               "CE",
@@ -483,7 +512,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _invertedNum();
+                            },
                             child: Text(
                               "+/-",
                               textAlign: TextAlign.center,
@@ -517,7 +548,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: double.infinity,
                           height: double.infinity,
                           child: FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _decimalFlag = true;
+                            },
                             child: Text(
                               ".",
                               textAlign: TextAlign.center,
